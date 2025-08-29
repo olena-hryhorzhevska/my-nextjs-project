@@ -5,9 +5,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { getSingleNote } from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+
+  const handleGoBack = () => {
+    const isSure = confirm('Are you sure?')
+    if (isSure) {
+      router.back();
+    }
+   };
 
   const {
     data: note,
@@ -27,8 +36,12 @@ const NoteDetailsClient = () => {
     ? `Updated at: ${note.updatedAt}`
     : `Created at: ${note.createdAt}`;
 
+
   return (
     <div>
+      <button type="button" onClick={handleGoBack}>
+        Back
+      </button>
       <h2>{note.title}</h2>
       <p>{note.content}</p>
       <p>{formattedDate}</p>
