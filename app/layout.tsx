@@ -1,17 +1,25 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+// import { Geist, Geist_Mono } from 'next/font/google';
+import { Marcellus } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header/Header';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
+// const geistSans = Geist({
+//   variable: '--font-geist-sans',
+//   subsets: ['latin'],
+// });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+// const geistMono = Geist_Mono({
+//   variable: '--font-geist-mono',
+//   subsets: ['latin'],
+// });
+
+const marcellus = Marcellus({
+  variable: '--font-marcellus',
   subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -28,10 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      {/* <body className={`${geistSans.variable} ${geistMono.variable}`}> */}
+      <body className={marcellus.variable}>
         <TanStackProvider>
           <Header />
-          <main>{children} { modal}</main>
+          <main>
+            {children} {modal}
+          </main>
 
           <footer>
             <p>

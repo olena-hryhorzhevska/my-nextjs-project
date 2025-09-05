@@ -29,6 +29,12 @@ export const getCategories = async () => {
   return res.data;
 };
 
+export type NewNoteData = {
+  title: string;
+  content: string;
+  categoryId: string;
+};
+
 export type CreateNote = Omit<
   Note,
   'userId' | 'categoryId' | 'id' | 'createdAt' | 'updatedAt'
@@ -52,3 +58,8 @@ export const getSingleNote = async (id: string) => {
   const res = await axios.get<Note>(`/notes/${id}`);
   return res.data;
 };
+
+export const createNote = async (note: NewNoteData) => {
+  const res = await axios.post<Note>('/notes', note);
+  return res.data;
+}
